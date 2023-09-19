@@ -1,44 +1,21 @@
-//Excercise One
-type User = {
-    name: string,
-    age: number,
-    occupation?: string
-}
+class Account {
+    readonly id: number;
+    owner: string;
+    balance: number;
+    nickname?: string;
 
-
-let users = [
-    {
-        name: 'John Smith',
-        age: 30,
-        occupation: "Software engineer"
-    },
-    {
-        name: 'Kate Muller',
-        age: 28
+    constructor(id: number, owner: string, balance: number){
+        this.id = id;
+        this.owner = owner;
+        this.balance = balance
     }
-]
 
-//Excercise Two
-type Bird ={
-    fly: () => void
-}
-type Fish = {
-    swim: () => void
+    deposit(amount: number): void {
+        if (amount <= 0)
+            throw new Error("Invalid amount")
+        this.balance += amount
+    }
 }
 
-type Pet = Bird | Fish
+let account = new Account(1, "Mosh", 0)
 
-//Excercise Three
-type weekDay = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday"
-
-//Excercise Four
-//Simplify the following
-let user = getUser();   
-console.log(user && user.address ? user.address.street: undefined);
-//Simplified
-let user = getUser();
-console.log(user?.address?.street)
-//Simplify the Following
-let x = foo !== null && foo !== undefined ? foo : bar();
-//Simplified
-let x = foo ?? bar();
