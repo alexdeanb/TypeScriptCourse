@@ -1,21 +1,19 @@
-class Account {
-    readonly id: number;
-    owner: string;
-    balance: number;
-    nickname?: string;
+class Ride {
+    private static _activeRides: number = 0;
 
-    constructor(id: number, owner: string, balance: number){
-        this.id = id;
-        this.owner = owner;
-        this.balance = balance
-    }
+    start(){Ride._activeRides++;}
+    stop(){Ride._activeRides--;}
 
-    deposit(amount: number): void {
-        if (amount <= 0)
-            throw new Error("Invalid amount")
-        this.balance += amount
+    static get activeRides() {
+        return Ride._activeRides;
     }
 }
 
-let account = new Account(1, "Mosh", 0)
+let ride1 = new Ride();
+ride1.start();
+
+let ride2 = new Ride();
+ride2.start();
+console.log(Ride.activeRides);
+console.log(Ride.activeRides);
 
